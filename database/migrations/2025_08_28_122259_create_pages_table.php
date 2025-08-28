@@ -6,21 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->longText('content');
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('template')->default('default'); // For different page layouts
+            $table->json('custom_fields')->nullable(); // For additional page data
+            $table->boolean('status')->default(1);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            
+            // Indexes
+            $table->index('status');
+            $table->index('slug');
+            $table->index('published_at');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('pages');
     }
