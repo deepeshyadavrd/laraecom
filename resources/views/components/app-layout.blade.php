@@ -15,7 +15,6 @@
     <main>
         {{ $slot }}
     </main>
-
     <!-- Future Footer will go here -->
 </body>
 </html>
