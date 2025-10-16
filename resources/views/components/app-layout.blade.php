@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UW Furnitures</title>
     <!-- Vite Directive to load our CSS -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
+    @viteReactRefresh
+    @vite('resources/js/app.jsx')
 </head>
 <body class="bg-gray-50">
     <!-- Navigation will go here -->
-    @include('layouts.navigation')
+    <!-- @include('layouts.navigation') -->
 <div id="app"></div>
-@viteReactRefresh
-@vite('resources/js/app.jsx')
+
     <!-- Page Content -->
-    <main>
+    <!-- <main>
         {{ $slot }}
-    </main>
+    </main> -->
     <!-- Future Footer will go here -->
 </body>
 </html>

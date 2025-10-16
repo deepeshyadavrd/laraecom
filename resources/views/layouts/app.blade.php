@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation will go here -->
-    @include('layouts.navigation')
+    <!-- @include('layouts.navigation') -->
 
     <!-- Page Content -->
     <main>
