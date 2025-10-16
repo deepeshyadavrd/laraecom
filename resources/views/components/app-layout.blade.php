@@ -10,7 +10,9 @@
 <body class="bg-gray-50">
     <!-- Navigation will go here -->
     @include('layouts.navigation')
-
+<div id="app"></div>
+@viteReactRefresh
+@vite('resources/js/app.jsx')
     <!-- Page Content -->
     <main>
         {{ $slot }}
