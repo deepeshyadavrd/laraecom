@@ -15,7 +15,7 @@
                 </div>
                 <!-- Website Logo -->
                 <div class="ml-4 md:ml-0">
-                    <a href="{{ url('/') }}" class="text-xl font-bold text-gray-900">URBANWOOD</a>
+                    <a href="{{ url('/') }}" class="text-xl font-bold text-gray-900">URBANWOOD f</a>
                 </div>
             </div>
 

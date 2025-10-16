@@ -11,7 +11,6 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation will go here -->
-    <!-- @include('layouts.navigation') -->
 <div id="app"></div>
 
     <!-- Page Content -->
