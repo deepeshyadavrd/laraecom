@@ -3,7 +3,25 @@ import { useEffect, useState } from "react";
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
+  const [editingId, setEditingId] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState(null)
 
+  // helper fetch categories from API
+  async function fetchCategories(){
+    setLoading(true);
+    try{
+        const res = await fetch("/api/admin/categories");
+        if (!res.ok) throw new Error("Failed to fetch categories");
+        const data = await res.json;
+        setCategories(data);
+    } catch (err){
+        console.error(err);
+    } finally {
+        setLoading(false);
+    }
+
+  }
   useEffect(() => {
     fetch("/api/admin/categories")
       .then((res) => res.json())
