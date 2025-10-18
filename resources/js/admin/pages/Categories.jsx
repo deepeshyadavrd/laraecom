@@ -23,9 +23,7 @@ export default function Categories() {
 
   }
   useEffect(() => {
-    fetch("/api/admin/categories")
-      .then((res) => res.json())
-      .then(setCategories);
+    fetchCategories();
   }, []);
 
   const addCategory = (e) => {
