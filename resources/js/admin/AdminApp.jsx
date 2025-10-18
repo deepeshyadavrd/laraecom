@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
@@ -24,3 +26,5 @@ export default function AdminApp() {
     </BrowserRouter>
   );
 }
+// ✅ Mount React App
+ReactDOM.createRoot(document.getElementById("app")).render(<AdminApp />);

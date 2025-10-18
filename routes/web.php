@@ -15,6 +15,9 @@ use App\Http\Controllers\HomeController;
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/admin/{any?}', function () {
+    return view('admin');
+})->where('any', '.*');
 // Product Routes
 // Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 // Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('products.show');
