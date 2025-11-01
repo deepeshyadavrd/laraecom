@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;                      // base controller to 
 use Illuminate\Http\Request;                              // Request object to access request data
 use App\Models\Category;                                  // Category model (assumes you have this model)
 use Illuminate\Validation\Rule;                           // Rule helper for validations
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {

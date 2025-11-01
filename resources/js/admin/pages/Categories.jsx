@@ -1,43 +1,47 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
+  const [is_popular, setIs_popular] = useState(null);
   const [editingId, setEditingId] = useState(null)
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null)
 
+    useEffect(() => {
+    fetchCategories();
+  }, []);
   // helper fetch categories from API
   async function fetchCategories(){
     setLoading(true);
     try{
-        const res = await fetch("/api/admin/categories");
-        if (!res.ok) throw new Error("Failed to fetch categories");
-        const data = await res.json;
+        const res = await axios.get("/api/admin/categories");
+        
         setCategories(data);
     } catch (err){
-        console.error(err);
+        console.error("Failed to fetch categories" .err);
     } finally {
         setLoading(false);
     }
 
   }
-  useEffect(() => {
-    fetchCategories();
-  }, []);
 
-  const addCategory = (e) => {
+
+  const addCategory = async (e) => {
     e.preventDefault();
-    fetch("/api/admin/categories", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
-    }).then(() => {
-      setName("");
-      fetch("/api/admin/categories")
-        .then((res) => res.json())
-        .then(setCategories);
+    const formData = new FormData();
+    formData.append("name", name);
+    // if (image) formData.append("image", image);
+    formData.append("is_popular", is_popular);
+
+    await axios.post("/api/admin/categories", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
     });
+    fetchCategories();
+    setName("");
+    // setImage(null);
+    setIsPopular(false);
   };
 
   return (
@@ -50,6 +54,12 @@ export default function Categories() {
           className="border px-3 py-1 rounded"
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="checkbox"
+          className="border px-3 py-1 rounded"
+          value={is_popular}
+          onChange={(e) => setIs_popular(e.target.value)}
         />
         <button className="bg-blue-600 text-white px-4 rounded">Add</button>
       </form>
