@@ -17,8 +17,8 @@ export default function Categories() {
     setLoading(true);
     try{
         const res = await axios.get("/api/admin/categories");
-        
-        setCategories(data);
+        // console.log(res.data);
+        setCategories(res.data);
     } catch (err){
         console.error("Failed to fetch categories" .err);
     } finally {
@@ -41,7 +41,7 @@ export default function Categories() {
     fetchCategories();
     setName("");
     // setImage(null);
-    setIsPopular(false);
+    setIs_popular(false);
   };
 
   return (
@@ -58,18 +58,22 @@ export default function Categories() {
         <input
           type="checkbox"
           className="border px-3 py-1 rounded"
-          value={is_popular}
+          checked={!!is_popular}
           onChange={(e) => setIs_popular(e.target.value)}
         />
         <button className="bg-blue-600 text-white px-4 rounded">Add</button>
       </form>
 
       <ul className="bg-white rounded shadow p-4">
-        {categories.map((c) => (
-          <li key={c.id} className="border-b py-2 last:border-none">
-            {c.name}
-          </li>
-        ))}
+        {loading ? (
+          <li className="py-2 text-gray-500 text-center">Loading categories...</li>
+        ) : categories && categories.length > 0 ? (
+          categories.map((c) => (
+            <li key={c.id} className="border-b py-2 last:border-none">
+              {c.name}
+            </li>
+          ))
+        ) : (<li className="py-2 text-gray-500 text-center">No categories found</li>)}
       </ul>
     </div>
   );

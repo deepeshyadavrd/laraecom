@@ -25,8 +25,7 @@ class CategoryController extends Controller
     /**
      * Create a new category
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         // validate request input - name is required and must be unique in categories table
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('categories', 'name')],
@@ -45,8 +44,7 @@ class CategoryController extends Controller
     /**
      * Show a single category
      */
-    public function show($id)
-    {
+    public function show($id){
         // find category by id or fail (throws 404)
         $category = Category::findOrFail($id);
 
@@ -57,8 +55,7 @@ class CategoryController extends Controller
     /**
      * Update an existing category
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         // find category or fail
         $category = Category::findOrFail($id);
 
@@ -84,8 +81,7 @@ class CategoryController extends Controller
     /**
      * Delete a category
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         // find and delete or 404
         $category = Category::findOrFail($id);
         $category->delete();
